@@ -7,18 +7,25 @@ from mysql.connector import Error
 from tkinter import *
 from PIL import Image, ImageTk
 from tkinter.filedialog import askopenfile
+import collections.abc
+
+
+
 global i
 
-def database(username):
+def database(username,password):
     try:
         #try to connect through mysqlconnector
         my_connect = mysql.connector.connect(host="10.0.0.4", user=username, passwd=password, database="SSUK")
         my_conn = my_connect.cursor()
 
+
     except:
         #error handling for wrong username or password
+        from Front_End import instructions
+        import Front_End
         instructions.destroy()
-        err_instructions = tk.Label(root, text="Please re-enter username and password", fg='red')
+        err_instructions = tk.Label(Front_End.root, text="Please re-enter username and password", fg='red')
         err_instructions.grid(columnspan=3, column=0, row=1)
 
 
@@ -111,10 +118,3 @@ def update_in_win(my_w,edit_data):
 
 
 
-def retrieve_input():
-    global username
-    global password
-    username =textBox.get("1.0","end-1c")
-    print(username)
-    password =passwordTextBox.get("1.0", "end-1c")
-    print(password)

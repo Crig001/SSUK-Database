@@ -8,3 +8,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter.filedialog import askopenfile
 global i
+
+
+
+exec(open("Front_End.py").read())

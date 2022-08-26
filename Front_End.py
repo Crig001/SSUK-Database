@@ -7,6 +7,8 @@ from mysql.connector import Error
 from tkinter import *
 from PIL import Image, ImageTk
 from tkinter.filedialog import askopenfile
+import collections.abc
+import Back_End
 
 global i
 
@@ -29,14 +31,16 @@ logo_label.image = logo
 logo_label.grid(column=1, row=0)
 
 #instructions
-
 instructions = tk.Label(root, text="Press the bellow button to connect to SSUK DataBase")
 instructions.grid(columnspan=3, column=0, row=1)
+
+
+
 
 #Connection Button
 browse_text = tk.StringVar()
 #The below command is what runs the function and makes the button work
-browse_btn = tk.Button(root, textvariable=browse_text, command=lambda:[retrieve_input(), database(username)], bg='red', fg='blue', height=2, width=15)
+browse_btn = tk.Button(root, textvariable=browse_text, command=lambda:[retrieve_input(), Back_End.database(username,password)], bg='red', fg='blue', height=2, width=15)
 browse_text.set("Connect")
 browse_btn.grid(column=1, row=2)
 
@@ -62,5 +66,17 @@ usernameInstructions.grid(columnspan=1, column=1, row=3)
 passwordInstructions = tk.Label(root, text="Enter password")
 passwordInstructions.grid(column=1, row=5)
 
+def retrieve_input():
+    global username
+    global password
+    username =textBox.get("1.0","end-1c")
+    print(username)
+    password =passwordTextBox.get("1.0", "end-1c")
+    print(password)
+
+
+def import_Backend_database():
+    from Back_End import database
+    return database(username,password)
 
 root.mainloop()
