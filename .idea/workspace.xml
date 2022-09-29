@@ -40,7 +40,7 @@
       <recent name="C:\Users\crighc\Documents\GitHub\SSUK-Database" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.Front_End (1)">
     <configuration name="Back_End" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SSUK-Database" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,9 +148,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.Front_End (1)" />
         <item itemvalue="Python.Back_End" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.python" />
         <item itemvalue="Python.Front_End" />
       </list>
