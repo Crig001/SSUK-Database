@@ -95,9 +95,9 @@ def database(username,password):
         print("Row updated  = ", id.rowcount)
         for w in my_w.grid_slaves(i):  # remove the edit row
             w.grid_forget()
-        update_in_win(my_w,edit_data)  # refresh the data
+        update_in_win(my_w,edit_data,username,password)  # refresh the data
 
-def update_in_win(my_w,edit_data):
+def update_in_win(my_w,edit_data,username,password):
     # log in through sqlalchemy
     log_on = "mysql+pymysql://" + username + ":" + password + "@10.0.0.4/SSUK"
     my_connection = create_engine(log_on)
