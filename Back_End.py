@@ -69,6 +69,7 @@ def database(username,password):
         e4_str_mark = tk.StringVar(my_w)
         e5_str_gender = tk.StringVar(my_w)
         e6_str_test = tk.StringVar(my_w)
+        e7_str_boop = tk.StringVar(my_w)
 
         e1_str_id.set(s[0])  # id is stored
         e2_str_name.set(s[1])  # Name is stored
@@ -76,6 +77,7 @@ def database(username,password):
         e4_str_mark.set(s[3])  # mark is stored
         e5_str_gender.set(s[4])  # gender  is stored
         e6_str_test.set(s[5])   #test is stored new command CC
+        e7_str_boop.set(s[6])    #boop is stored new command CC
 
         e1 = tk.Entry(my_w, textvariable=e1_str_id, width=10, state='disabled')
         e1.grid(row=i, column=0)
@@ -89,16 +91,18 @@ def database(username,password):
         e5.grid(row=i, column=4)
         e6 = tk.Entry(my_w, textvariable=e6_str_test, width=10)
         e6.grid(row=i, column=5)
-        b2 = tk.Button(my_w, text='Update', command=lambda: my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test,e1_str_id,id),
+        e7 = tk.Entry(my_w, textvariable=e7_str_boop, width=10)
+        e7.grid(row=i, column=6)
+        b2 = tk.Button(my_w, text='Update', command=lambda: my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test, e7_str_boop, e1_str_id,id),
                        relief='ridge', anchor="w", width=5)
         b2.grid(row=i, column=j + 1)
 
 
 
-    def my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test, e1_str_id,id):  # update record
-        data = (e2_str_name.get(), e3_str_class.get(), e4_str_mark.get(), e5_str_gender.get(), e6_str_test.get(), e1_str_id.get())
+    def my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test,e7_str_boop,e1_str_id,id):  # update record
+        data = (e2_str_name.get(), e3_str_class.get(), e4_str_mark.get(), e5_str_gender.get(), e6_str_test.get(),e7_str_boop(), e1_str_id.get())
         id = my_connection.execute("UPDATE personal SET FirstName=%s,LastName=%s,\
-            PostalAddress=%s,PostalCity=%s,PostalCounty=%s WHERE id=%s", data)
+            PostalAddress=%s,PostalCity=%s,PostalCounty=%s,PostalPostCode=%s WHERE id=%s", data)
         print("Row updated  = ", id.rowcount)
         for w in my_w.grid_slaves(i):  # remove the edit row
             w.grid_forget()
