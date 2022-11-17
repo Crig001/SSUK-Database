@@ -42,8 +42,18 @@ def database(username,password):
         my_cursor = my_connection.execute("SELECT * FROM personal limit 0,10")
         global i
         global j
-        i = 0
+        i = 1
         for personal in my_cursor:
+            e = Label(my_w, width=10, text='ID', borderwidth=2, relief='ridge', anchor='w', bg='yellow')
+            e.grid(row=0, column=0)
+            e = Label(my_w, width=10, text='FirstName', borderwidth=2, relief='ridge', anchor='w', bg='yellow')
+            e.grid(row=0, column=1)
+            e = Label(my_w, width=10, text='LastName', borderwidth=2, relief='ridge', anchor='w', bg='yellow')
+            e.grid(row=0, column=2)
+            e = Label(my_w, width=10, text='PostalAddress', borderwidth=2, relief='ridge', anchor='w', bg='yellow')
+            e.grid(row=0, column=3)
+            e = Label(my_w, width=10, text='PostalCity', borderwidth=2, relief='ridge', anchor='w', bg='yellow')
+            e.grid(row=0, column=4)
             for j in range(len(personal)):
                 e = Label(my_w, width=10, text=personal[j],
                           relief='ridge', anchor="w")
@@ -69,6 +79,8 @@ def database(username,password):
         e4_str_mark = tk.StringVar(my_w)
         e5_str_gender = tk.StringVar(my_w)
         e6_str_test = tk.StringVar(my_w)
+        e7_str_boop = tk.StringVar(my_w)
+        e8_str_bang = tk.StringVar(my_w)
 
         e1_str_id.set(s[0])  # id is stored
         e2_str_name.set(s[1])  # Name is stored
@@ -76,6 +88,8 @@ def database(username,password):
         e4_str_mark.set(s[3])  # mark is stored
         e5_str_gender.set(s[4])  # gender  is stored
         e6_str_test.set(s[5])   #test is stored new command CC
+        e7_str_boop.set(s[6])    #boop is stored new command CC
+        e8_str_bang.set(s[7])   #bang is stored new command CC
 
         e1 = tk.Entry(my_w, textvariable=e1_str_id, width=10, state='disabled')
         e1.grid(row=i, column=0)
@@ -89,16 +103,20 @@ def database(username,password):
         e5.grid(row=i, column=4)
         e6 = tk.Entry(my_w, textvariable=e6_str_test, width=10)
         e6.grid(row=i, column=5)
-        b2 = tk.Button(my_w, text='Update', command=lambda: my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test,e1_str_id,id),
+        e7 = tk.Entry(my_w, textvariable=e7_str_boop, width=10)
+        e7.grid(row=i, column=6)
+        e8 = tk.Entry(my_w, textvariable=e8_str_bang, width=10)
+        e8.grid(row=i, column=7)
+        b2 = tk.Button(my_w, text='Update', command=lambda: my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test, e7_str_boop,e8_str_bang, e1_str_id,id),
                        relief='ridge', anchor="w", width=5)
         b2.grid(row=i, column=j + 1)
 
 
 
-    def my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test, e1_str_id,id):  # update record
-        data = (e2_str_name.get(), e3_str_class.get(), e4_str_mark.get(), e5_str_gender.get(), e6_str_test.get(), e1_str_id.get())
+    def my_update(e2_str_name, e3_str_class, e4_str_mark, e5_str_gender, e6_str_test,e7_str_boop,e8_str_bang,e1_str_id,id):  # update record
+        data = (e2_str_name.get(), e3_str_class.get(), e4_str_mark.get(), e5_str_gender.get(), e6_str_test.get(),e7_str_boop.get(),e8_str_bang.get(), e1_str_id.get())
         id = my_connection.execute("UPDATE personal SET FirstName=%s,LastName=%s,\
-            PostalAddress=%s,PostalCity=%s,PostalCounty=%s WHERE id=%s", data)
+            PostalAddress=%s,PostalCity=%s,PostalCounty=%s,PostalPostCode=%s,ResidentialAddress=%s, WHERE id=%s", data)
         print("Row updated  = ", id.rowcount)
         for w in my_w.grid_slaves(i):  # remove the edit row
             w.grid_forget()
